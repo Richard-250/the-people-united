@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-dark: #0d0d0d;
+  --bg-dark-2: #141414;
+  --bg-card: #1c1c1c;
+  --accent-orange: #ff6b35;
+  --accent-gold: #c9a84c;
+  --steel-blue: #2e86ab;
+  --text-primary: #f5f5f0;
+  --text-muted: #888888;
+  --border-subtle: #2a2a2a;
+  --charcoal: #0d0d0d;
+  --orange: #ff6b35;
+  --steel: #2e86ab;
+  --gold: #c9a84c;
+  --offwhite: #f5f5f0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-charcoal: #0d0d0d;
+  --color-brand-orange: #ff6b35;
+  --color-steel: #2e86ab;
+  --color-gold: #c9a84c;
+  --color-offwhite: #f5f5f0;
+  --color-bg-dark: #0d0d0d;
+  --color-bg-dark-2: #141414;
+  --color-bg-card: #1c1c1c;
+  --color-border-subtle: #2a2a2a;
+  --color-text-muted: #888888;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-body {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Grid texture overlay utility */
+.bg-grid-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0 0h40v1H0V0zm0 0v40h1V0H0z' fill='%23ffffff' fill-opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Subtle noise */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* Hide scrollbar for carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
