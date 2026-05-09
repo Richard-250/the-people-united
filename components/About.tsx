@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { companyInfo } from "@/data";
+import { companyInfo, rwandaProjectAreas } from "@/data";
 
 const milestones = [
   { year: "2020", text: "Founded" },
@@ -30,10 +30,10 @@ export default function About() {
           >
             <div className="relative aspect-[4/3] overflow-hidden rounded-sm border-2 border-brand-orange/40 shadow-xl shadow-black/50">
               <Image
-                src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&q=80"
-                alt="Engineering team at work"
+                src="/images/about-architecture-render.png"
+                alt="Modern reception and pavilion — architectural visualization"
                 fill
-                className="object-cover"
+                className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
@@ -59,21 +59,31 @@ export default function About() {
               About us
             </p>
             <h2 className="font-display mt-3 text-5xl tracking-widest text-offwhite md:text-6xl">
-              PRECISION ENGINEERING IN THE HEART OF KIGALI
+              BUILT FOR RWANDA — FROM KIGALI TO EVERY PROVINCE
             </h2>
             <p className="font-body mt-6 text-base leading-relaxed text-text-muted md:text-lg">
               {companyInfo.name} is a multidisciplinary construction and
               engineering firm delivering structural design, architecture,
-              surveying, and consultancy across Rwanda and the wider East
-              African region. We combine international standards with local
-              insight — so every structure we touch is safe, efficient, and
-              built for generations.
+              surveying, and consultancy nationwide. We combine international
+              standards with local insight — so every structure we touch is
+              safe, efficient, and built for generations.
             </p>
             <p className="font-body mt-4 text-base leading-relaxed text-text-muted md:text-lg">
-              Our team of licensed engineers, architects, and surveyors partners
-              with developers, institutions, and homeowners from first sketch
-              to final handover — including professional software training that
-              strengthens Rwanda&apos;s technical workforce.
+              Our sites and deliveries span key growth areas including{" "}
+              <strong className="text-offwhite/90">
+                {rwandaProjectAreas.slice(0, 8).join(", ")}
+              </strong>
+              , and many more cells and districts across the country — from{" "}
+              <strong className="text-offwhite/90">Masaka</strong>,{" "}
+              <strong className="text-offwhite/90">Kicukiro</strong>,{" "}
+              <strong className="text-offwhite/90">Musanze</strong>, and{" "}
+              <strong className="text-offwhite/90">Rusizi</strong> to Eastern,
+              Northern, and Western corridors.
+            </p>
+            <p className="font-body mt-4 text-base leading-relaxed text-text-muted md:text-lg">
+              We partner with developers, institutions, and homeowners from first
+              sketch to handover — including professional software training backed
+              by real project PDFs (CSI SAFE, ETABS, SAP2000, AutoCAD, Lumion).
             </p>
           </motion.div>
         </div>

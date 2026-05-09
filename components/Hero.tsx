@@ -6,6 +6,13 @@ import { ChevronDown, Building2 } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { companyInfo } from "@/data";
 
+/** Drone city / architecture — Pixabay (free). pixabay.com/videos/drone-city-architecture-landscape-24145/ */
+const HERO_VIDEO_DRONE =
+  "https://cdn.pixabay.com/video/2019/06/03/24145-340670649_medium.mp4";
+
+/** Real Kigali street photo — Pixabay (free). pixabay.com/photos/kigali-rwanda-city-buildings-5256022/ */
+const HERO_POSTER = "/images/hero-kigali-street.jpg";
+
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -30,14 +37,28 @@ export default function Hero() {
       className="relative flex min-h-screen items-center overflow-hidden pt-24"
     >
       <div className="absolute inset-0 z-0">
+        {/* Still image when user prefers reduced motion */}
         <Image
-          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=90"
-          alt="Construction and engineering"
+          src={HERO_POSTER}
+          alt=""
           fill
           priority
-          className="object-cover"
+          className="hidden object-cover motion-reduce:block"
           sizes="100vw"
+          aria-hidden
         />
+        <video
+          className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={HERO_POSTER}
+          preload="metadata"
+          aria-hidden
+        >
+          <source src={HERO_VIDEO_DRONE} type="video/mp4" />
+        </video>
         <div
           className="absolute inset-0 bg-gradient-to-r from-[#0D0D0D]/95 via-[#0D0D0D]/75 to-transparent"
           aria-hidden
@@ -114,11 +135,16 @@ export default function Hero() {
         initial={{ opacity: 0, x: 24 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-8 right-4 z-10 flex items-center gap-2 rounded-sm border border-brand-orange/30 bg-bg-dark/80 px-4 py-2 backdrop-blur-sm md:right-8"
+        className="absolute bottom-8 right-4 z-10 flex max-w-[min(100%,220px)] flex-col items-end gap-1 rounded-sm border border-brand-orange/30 bg-bg-dark/80 px-3 py-2 backdrop-blur-sm md:right-8 md:max-w-xs md:px-4"
       >
-        <Building2 className="h-5 w-5 text-brand-orange" />
-        <span className="font-body text-xs font-medium uppercase tracking-wider text-offwhite/90">
-          Est. {companyInfo.founded} | {companyInfo.location}
+        <div className="flex items-center gap-2">
+          <Building2 className="h-5 w-5 shrink-0 text-brand-orange" />
+          <span className="font-body text-xs font-medium uppercase tracking-wider text-offwhite/90">
+            Est. {companyInfo.founded} | {companyInfo.location}
+          </span>
+        </div>
+        <span className="font-body text-[10px] leading-tight text-text-muted">
+          Photo: Kigali street · Video: aerial city (Pixabay — free license)
         </span>
       </motion.div>
     </section>

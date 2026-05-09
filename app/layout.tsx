@@ -17,20 +17,22 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "The People United Ltd | Construction & Engineering | Kigali, Rwanda",
+  title:
+    "tTHE PEOPLE CONSTRUCTION ltd | Construction & Engineering | Rwanda",
   description:
-    "Professional structural design, architecture, topography survey, consultancy, real estate, and civil engineering software training in Rwanda.",
+    "Structural design, architecture, topography, consultancy, and software training (CSI SAFE, ETABS, SAP2000, AutoCAD, Lumion) — projects across Rwanda.",
   keywords: [
     "construction Rwanda",
     "structural engineer Kigali",
-    "architecture design Rwanda",
+    "Masaka Kicukiro Musanze Rusizi construction",
+    "ETABS training Rwanda",
     "civil engineering training",
   ],
   openGraph: {
-    title: "The People United Ltd",
-    description: "Building Rwanda’s Future, One Structure at a Time",
+    title: "tTHE PEOPLE CONSTRUCTION ltd",
+    description: "Building Rwanda’s future — real projects, real training.",
     url: "https://thepeopleunitedltd.com",
-    siteName: "The People United Ltd",
+    siteName: "tTHE PEOPLE CONSTRUCTION ltd",
   },
 };
 

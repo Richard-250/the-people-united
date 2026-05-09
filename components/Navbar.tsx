@@ -51,12 +51,12 @@ export default function Navbar() {
           type="button"
           onClick={() => go("home")}
           className="flex items-center gap-2 text-left"
-          aria-label="The People United home"
+          aria-label="tTHE PEOPLE CONSTRUCTION ltd home"
         >
           <Building2 className="h-8 w-8 shrink-0 text-brand-orange" />
           <span className="font-display text-xl tracking-widest text-brand-orange md:text-2xl">
-            THE PEOPLE UNITED
-            <span className="ml-1 text-offwhite">LTD</span>
+            tTHE PEOPLE CONSTRUCTION
+            <span className="ml-1 text-offwhite">ltd</span>
           </span>
         </button>
 

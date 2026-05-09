@@ -21,6 +21,11 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [deliveredByEmail, setDeliveredByEmail] = useState<boolean | null>(
+    null,
+  );
 
   function validate(): boolean {
     const next: FormErrors = {};
@@ -34,11 +39,47 @@ export default function Contact() {
     return Object.keys(next).length === 0;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setSubmitError(null);
     if (!validate()) return;
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          service,
+          message: message.trim(),
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        code?: string;
+        emailed?: boolean;
+      };
+      if (!res.ok) {
+        setSubmitError(
+          data.error ||
+            "Something went wrong. Please try again or email us directly.",
+        );
+        return;
+      }
+      setDeliveredByEmail(data.emailed === true);
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Network error. Check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
+
+  const mailtoFallback = `mailto:${companyInfo.email}?subject=${encodeURIComponent(`Website enquiry — ${service}`)}&body=${encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}`,
+  )}`;
 
   return (
     <section
@@ -69,7 +110,26 @@ export default function Contact() {
             {submitted ? (
               <div className="rounded-sm border border-brand-orange/40 bg-bg-card p-10 text-center">
                 <p className="font-body text-lg text-offwhite">
-                  Thank you! We&apos;ll get back to you within 24 hours.
+                  Thank you! Your message was received and saved.
+                  {deliveredByEmail ? (
+                    <>
+                      {" "}
+                      A copy was also emailed to{" "}
+                      <strong className="text-brand-orange">
+                        {companyInfo.email}
+                      </strong>
+                      .
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      (Email forwarding is optional on the server — your message
+                      is still stored for our team.)
+                    </>
+                  )}
+                </p>
+                <p className="font-body mt-4 text-sm text-text-muted">
+                  We&apos;ll get back to you soon.
                 </p>
               </div>
             ) : (
@@ -78,6 +138,17 @@ export default function Contact() {
                 className="space-y-5 rounded-sm border border-border-subtle bg-bg-card p-6 md:p-8"
                 noValidate
               >
+                {submitError && (
+                  <div className="rounded-sm border border-red-500/40 bg-red-950/30 p-4 font-body text-sm text-red-200">
+                    <p>{submitError}</p>
+                    <a
+                      href={mailtoFallback}
+                      className="mt-2 inline-block font-semibold text-brand-orange underline"
+                    >
+                      Open email app instead
+                    </a>
+                  </div>
+                )}
                 <div>
                   <label
                     htmlFor="fullName"
@@ -91,6 +162,7 @@ export default function Contact() {
                     onChange={(e) => setName(e.target.value)}
                     className="font-body mt-2 w-full rounded-sm border border-border-subtle bg-charcoal px-4 py-3 text-offwhite outline-none ring-brand-orange/40 transition-shadow focus:ring-2"
                     autoComplete="name"
+                    disabled={submitting}
                   />
                   {errors.name && (
                     <p className="mt-1 font-body text-xs text-red-400">
@@ -112,6 +184,7 @@ export default function Contact() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="font-body mt-2 w-full rounded-sm border border-border-subtle bg-charcoal px-4 py-3 text-offwhite outline-none ring-brand-orange/40 transition-shadow focus:ring-2"
                     autoComplete="email"
+                    disabled={submitting}
                   />
                   {errors.email && (
                     <p className="mt-1 font-body text-xs text-red-400">
@@ -132,6 +205,7 @@ export default function Contact() {
                     onChange={(e) => setPhone(e.target.value)}
                     className="font-body mt-2 w-full rounded-sm border border-border-subtle bg-charcoal px-4 py-3 text-offwhite outline-none ring-brand-orange/40 transition-shadow focus:ring-2"
                     autoComplete="tel"
+                    disabled={submitting}
                   />
                   {errors.phone && (
                     <p className="mt-1 font-body text-xs text-red-400">
@@ -151,6 +225,7 @@ export default function Contact() {
                     value={service}
                     onChange={(e) => setService(e.target.value)}
                     className="font-body mt-2 w-full rounded-sm border border-border-subtle bg-charcoal px-4 py-3 text-offwhite outline-none ring-brand-orange/40 transition-shadow focus:ring-2"
+                    disabled={submitting}
                   >
                     {services.map((s) => (
                       <option key={s.title} value={s.title}>
@@ -172,6 +247,7 @@ export default function Contact() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="font-body mt-2 w-full resize-y rounded-sm border border-border-subtle bg-charcoal px-4 py-3 text-offwhite outline-none ring-brand-orange/40 transition-shadow focus:ring-2"
+                    disabled={submitting}
                   />
                   {errors.message && (
                     <p className="mt-1 font-body text-xs text-red-400">
@@ -181,12 +257,13 @@ export default function Contact() {
                 </div>
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex w-full items-center justify-center gap-2 rounded-sm bg-brand-orange py-3.5 font-body text-sm font-semibold uppercase tracking-wide text-charcoal"
+                  disabled={submitting}
+                  whileHover={submitting ? undefined : { scale: 1.02 }}
+                  whileTap={submitting ? undefined : { scale: 0.98 }}
+                  className="flex w-full items-center justify-center gap-2 rounded-sm bg-brand-orange py-3.5 font-body text-sm font-semibold uppercase tracking-wide text-charcoal disabled:opacity-60"
                 >
                   <Send className="h-4 w-4" />
-                  Submit
+                  {submitting ? "Sending…" : "Submit"}
                 </motion.button>
               </form>
             )}
@@ -205,7 +282,7 @@ export default function Contact() {
                   <p className="font-body text-xs font-semibold uppercase tracking-widest text-text-muted">
                     Address
                   </p>
-                  <p className="font-body mt-1 text-offwhite">
+                  <p className="font-body mt-1 whitespace-pre-line text-offwhite">
                     {companyInfo.address}
                   </p>
                 </div>
@@ -253,8 +330,8 @@ export default function Contact() {
 
             <div className="overflow-hidden rounded-sm border border-border-subtle">
               <iframe
-                title="The People United Ltd location map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127672.47617207376!2d29.938288349999997!3d-1.9440727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca4a9455ce6f7%3A0x82fad09c87b17cf6!2sKigali!5e0!3m2!1sen!2srw!4v1715000000000!5m2!1sen!2srw"
+                title="tTHE PEOPLE CONSTRUCTION ltd — Kabuga, Gasabo, Kigali"
+                src={companyInfo.mapEmbedUrl}
                 width="100%"
                 height="250"
                 style={{ border: 0 }}

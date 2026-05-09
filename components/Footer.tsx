@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Building2 } from "lucide-react";
 import { FacebookIcon, InstagramIcon, LinkedInIcon } from "@/components/BrandIcons";
 import { companyInfo, services } from "@/data";
@@ -26,8 +27,8 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <Building2 className="h-8 w-8 text-brand-orange" />
               <span className="font-display text-lg tracking-widest text-brand-orange">
-                THE PEOPLE UNITED
-                <span className="text-offwhite"> LTD</span>
+                tTHE PEOPLE CONSTRUCTION
+                <span className="text-offwhite"> ltd</span>
               </span>
             </div>
             <p className="font-body mt-4 text-sm leading-relaxed text-text-muted">
@@ -128,7 +129,13 @@ export default function Footer() {
             © {year} {companyInfo.name}. All rights reserved.
           </p>
           <p className="font-body mt-2 text-xs text-text-muted">
-            Built with precision in Kigali 🇷🇼
+            Built with precision in Kigali 🇷🇼 ·{" "}
+            <Link
+              href="/portal"
+              className="opacity-50 transition-opacity hover:text-brand-orange hover:opacity-100"
+            >
+              Owner
+            </Link>
           </p>
         </div>
       </div>

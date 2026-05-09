@@ -48,6 +48,15 @@ export default function Projects() {
           <h2 className="font-display mt-3 text-5xl tracking-widest text-offwhite md:text-6xl">
             PROJECTS
           </h2>
+          <p className="font-body mx-auto mt-5 max-w-3xl text-sm text-text-muted md:text-base">
+            A selection of our real sites and deliverables — including work in{" "}
+            <strong className="text-offwhite/90">Masaka</strong>,{" "}
+            <strong className="text-offwhite/90">Kicukiro</strong>,{" "}
+            <strong className="text-offwhite/90">Musanze</strong>,{" "}
+            <strong className="text-offwhite/90">Rusizi</strong>, and other
+            districts and towns across Rwanda (see representative coverage in our
+            About section).
+          </p>
         </motion.div>
 
         <div className="mt-10 flex justify-center gap-2">

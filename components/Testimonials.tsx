@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
 import { testimonials } from "@/data";
@@ -94,14 +93,13 @@ export default function Testimonials() {
                 &ldquo;{t.text}&rdquo;
               </p>
               <div className="mt-8 flex items-center gap-4">
-                <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-brand-orange/30">
-                  <Image
-                    src={t.image}
-                    alt={t.name}
-                    fill
-                    className="object-cover"
-                    sizes="56px"
-                  />
+                <div
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-charcoal ring-2 ring-brand-orange/30"
+                  aria-hidden
+                >
+                  <span className="font-display text-lg tracking-wide text-brand-orange">
+                    {t.initials}
+                  </span>
                 </div>
                 <div>
                   <p className="font-display text-lg tracking-wide text-offwhite">
