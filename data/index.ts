@@ -251,6 +251,7 @@ export const team = [
     name: "Masezerano Obed",
     role: "Co-Founder & Field Operations / Survey",
     email: "Thepeoplemanof5@gmail.com",
+    phone: "0791 762 918",
     image: "/images/team/masezerano-obed.png",
     coFounder: true,
     bio: "Co-founder driving on-site execution, surveying coordination, and technical documentation — ensuring projects are built to spec from the ground up.",
