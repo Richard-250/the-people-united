@@ -18,7 +18,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title:
-    "tTHE PEOPLE CONSTRUCTION ltd | Construction & Engineering | Rwanda",
+    "THE PEOPLE CONSTRUCTION ltd | Construction & Engineering | Rwanda",
   description:
     "Structural design, architecture, topography, consultancy, and software training (CSI SAFE, ETABS, SAP2000, AutoCAD, Lumion) — projects across Rwanda.",
   keywords: [
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     "civil engineering training",
   ],
   openGraph: {
-    title: "tTHE PEOPLE CONSTRUCTION ltd",
+    title: "THE PEOPLE CONSTRUCTION ltd",
     description: "Building Rwanda’s future — real projects, real training.",
     url: "https://thepeopleunitedltd.com",
-    siteName: "tTHE PEOPLE CONSTRUCTION ltd",
+    siteName: "THE PEOPLE CONSTRUCTION ltd",
   },
 };
 

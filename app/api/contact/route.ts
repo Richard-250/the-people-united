@@ -86,7 +86,7 @@ export async function POST(req: Request) {
 
     try {
       await transporter.sendMail({
-        from: `"tTHE PEOPLE CONSTRUCTION website" <${fromAddr}>`,
+        from: `"THE PEOPLE CONSTRUCTION website" <${fromAddr}>`,
         to: inbox,
         replyTo: safeEmail,
         subject: `[Website] ${safeService} — ${safeName}`,

@@ -330,7 +330,7 @@ export default function Contact() {
 
             <div className="overflow-hidden rounded-sm border border-border-subtle">
               <iframe
-                title="tTHE PEOPLE CONSTRUCTION ltd — Kabuga, Gasabo, Kigali"
+                title="THE PEOPLE CONSTRUCTION ltd — Kabuga, Gasabo, Kigali"
                 src={companyInfo.mapEmbedUrl}
                 width="100%"
                 height="250"

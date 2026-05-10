@@ -27,7 +27,7 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <Building2 className="h-8 w-8 text-brand-orange" />
               <span className="font-display text-lg tracking-widest text-brand-orange">
-                tTHE PEOPLE CONSTRUCTION
+                THE PEOPLE CONSTRUCTION
                 <span className="text-offwhite"> ltd</span>
               </span>
             </div>

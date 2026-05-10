@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle, Phone } from "lucide-react";
 import { LinkedInIcon } from "@/components/BrandIcons";
 import { team } from "@/data";
 
@@ -108,7 +108,26 @@ function MemberCard({
         >
           <Mail className="h-5 w-5" />
         </a>
+        {"phone" in member && member.phone ? (
+          <a
+            href={`tel:${String(member.phone).replace(/\s/g, "")}`}
+            className="text-offwhite/70 transition-colors hover:text-brand-orange"
+            aria-label={`Phone ${member.name}`}
+          >
+            <Phone className="h-5 w-5" />
+          </a>
+        ) : null}
       </div>
+      {"phone" in member && member.phone ? (
+        <p className="font-body mt-3 text-center text-xs text-text-muted">
+          <a
+            href={`tel:${String(member.phone).replace(/\s/g, "")}`}
+            className="hover:text-brand-orange"
+          >
+            {String(member.phone)}
+          </a>
+        </p>
+      ) : null}
     </motion.article>
   );
 }

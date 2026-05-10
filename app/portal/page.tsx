@@ -100,7 +100,7 @@ export default function OwnerPortalPage() {
               OWNER PORTAL
             </h1>
             <p className="font-body mt-2 text-sm text-text-muted">
-              tTHE PEOPLE CONSTRUCTION ltd — messages & training bookings
+              THE PEOPLE CONSTRUCTION ltd — messages & training bookings
             </p>
           </div>
           <form onSubmit={login} className="space-y-4">

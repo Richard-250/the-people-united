@@ -1,5 +1,5 @@
 export const companyInfo = {
-  name: "tTHE PEOPLE CONSTRUCTION ltd",
+  name: "THE PEOPLE CONSTRUCTION ltd",
   tagline:
     "Engineering excellence, architectural precision, and construction you can trust — delivered across Rwanda.",
   email: "thepeopleunitedltd@gmail.com",
@@ -239,12 +239,13 @@ export const team = [
     name: "Pacifique Mugabo",
     role: "Co-Founder & Lead Structural Engineer",
     email: "Pacifiquemugabo21@gmail.com",
+    phone: "0788 237 407",
     image: "/images/team/pacifique-mugabo.png",
     coFounder: true,
     bio: "Lead civil engineer specializing in structural design and project delivery — ETABS, AutoCAD, and on-site execution.",
     skills: ["Structural Design", "ETABS", "AutoCAD", "Project Management"],
     linkedin: "#",
-    whatsapp: "https://wa.me/250791762918",
+    whatsapp: "https://wa.me/250788237407",
   },
   {
     name: "Masezerano Obed",
@@ -292,7 +293,7 @@ export const testimonials = [
     role: "Developer, Kigali",
     initials: "JN",
     rating: 5,
-    text: "tTHE PEOPLE CONSTRUCTION ltd delivered structural and finishing works on schedule. Communication and site discipline were excellent.",
+    text: "THE PEOPLE CONSTRUCTION ltd delivered structural and finishing works on schedule. Communication and site discipline were excellent.",
     project: "Commercial shell, Nyarugenge",
   },
   {
